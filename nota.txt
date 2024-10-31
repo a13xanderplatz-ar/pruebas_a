@@ -1,0 +1,59 @@
+#include "Cliente.hpp"
+#include <iostream>
+
+int main() {
+    std::cout << "\n=== Prueba de Constructores ===" << std::endl;
+    
+    // Prueba del constructor por defecto
+    std::cout << "\n1. Constructor por defecto:" << std::endl;
+    Cliente cliente1;
+    cliente1.print();
+
+    // Prueba del constructor con parámetros
+    std::cout << "\n2. Constructor con parámetros:" << std::endl;
+    char nombre[] = "Juan Perez";
+    char direccion[] = "Calle 123";
+    char telefono[] = "555-1234";
+    Cliente cliente2(1, nombre, direccion, telefono);
+    cliente2.print();
+
+    // Prueba del constructor de copia
+    std::cout << "\n3. Constructor de copia:" << std::endl;
+    Cliente cliente3 = cliente2;
+    cliente3.print();
+
+    // Prueba del operador de asignación
+    std::cout << "\n4. Operador de asignación:" << std::endl;
+    Cliente cliente4;
+    cliente4 = cliente2;
+    cliente4.print();
+
+    // Prueba de getters
+    std::cout << "\n=== Prueba de Getters ===" << std::endl;
+    std::cout << "ID: " << cliente2.getId() << std::endl;
+    std::cout << "Nombre: " << cliente2.getNombre() << std::endl;
+    std::cout << "Direccion: " << cliente2.getDireccion() << std::endl;
+    std::cout << "Telefono: " << cliente2.getTelefono() << std::endl;
+
+    // Prueba de modificación de datos
+    std::cout << "\n=== Prueba de Modificación ===" << std::endl;
+    char nuevo_nombre[] = "Maria Lopez";
+    Cliente cliente5(2, nuevo_nombre, direccion, telefono);
+    std::cout << "Nuevo cliente:" << std::endl;
+    cliente5.print();
+
+    // Prueba de múltiples objetos
+    std::cout << "\n=== Lista de Todos los Clientes ===" << std::endl;
+    std::cout << "Cliente 1 (default):" << std::endl;
+    cliente1.print();
+    std::cout << "Cliente 2 (original):" << std::endl;
+    cliente2.print();
+    std::cout << "Cliente 3 (copia de 2):" << std::endl;
+    cliente3.print();
+    std::cout << "Cliente 4 (asignado de 2):" << std::endl;
+    cliente4.print();
+    std::cout << "Cliente 5 (nuevo):" << std::endl;
+    cliente5.print();
+
+    return 0;
+}

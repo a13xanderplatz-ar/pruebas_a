@@ -1,0 +1,113 @@
+#include <iostream>
+#include "Cliente.hpp"
+
+int main() {
+    // Constructor por defecto
+    Cliente cliente1;
+    
+    // Variables para entrada
+    int id;
+    char* nombre = new char[1];  // Inicialmente solo 1 espacio
+    char* direccion = new char[1];
+    char* telefono = new char[1];
+    
+    int pos_nombre = 0;
+    int pos_direccion = 0;
+    int pos_telefono = 0;
+    
+    std::cout << "Ingrese el ID del cliente: ";
+    std::cin >> id;
+    std::cin.ignore();
+    
+    std::cout << "Ingrese el nombre del cliente: ";
+    char temp_nombre;
+    // Asignación dinámica para nombre
+    while((temp_nombre = std::cin.get()) != '\n') {
+        char* temp = new char[pos_nombre + 1];
+        for(int i = 0; i < pos_nombre; i++) {
+            temp[i] = nombre[i];
+        }
+        temp[pos_nombre] = temp_nombre;
+        delete[] nombre;
+        nombre = temp;
+        pos_nombre++;
+    }
+    // Añadir el caracter nulo al final
+    char* temp = new char[pos_nombre + 1];
+    for(int i = 0; i < pos_nombre; i++) {
+        temp[i] = nombre[i];
+    }
+    temp[pos_nombre] = '\0';
+    delete[] nombre;
+    nombre = temp;
+    
+    std::cout << "Ingrese la dirección del cliente: ";
+    char temp_direccion;
+    // Asignación dinámica para dirección
+    while((temp_direccion = std::cin.get()) != '\n') {
+        char* temp = new char[pos_direccion + 1];
+        for(int i = 0; i < pos_direccion; i++) {
+            temp[i] = direccion[i];
+        }
+        temp[pos_direccion] = temp_direccion;
+        delete[] direccion;
+        direccion = temp;
+        pos_direccion++;
+    }
+    // Añadir el caracter nulo al final
+    temp = new char[pos_direccion + 1];
+    for(int i = 0; i < pos_direccion; i++) {
+        temp[i] = direccion[i];
+    }
+    temp[pos_direccion] = '\0';
+    delete[] direccion;
+    direccion = temp;
+    
+    std::cout << "Ingrese el teléfono del cliente: ";
+    char temp_telefono;
+    // Asignación dinámica para teléfono
+    while((temp_telefono = std::cin.get()) != '\n') {
+        char* temp = new char[pos_telefono + 1];
+        for(int i = 0; i < pos_telefono; i++) {
+            temp[i] = telefono[i];
+        }
+        temp[pos_telefono] = temp_telefono;
+        delete[] telefono;
+        telefono = temp;
+        pos_telefono++;
+    }
+    // Añadir el caracter nulo al final
+    temp = new char[pos_telefono + 1];
+    for(int i = 0; i < pos_telefono; i++) {
+        temp[i] = telefono[i];
+    }
+    temp[pos_telefono] = '\0';
+    delete[] telefono;
+    telefono = temp;
+    
+    // Constructor con parámetros
+    Cliente cliente2(id, nombre, direccion, telefono);
+    
+    // Constructor de copia
+    Cliente cliente3 = cliente2;
+    
+    // Operador de asignación
+    cliente1 = cliente2;
+    
+    // Mostrar información de los clientes usando el método print
+    std::cout << "\nInformación del Cliente 1 (asignado):" << std::endl;
+    cliente1.print();
+    
+    std::cout << "\nInformación del Cliente 2 (original):" << std::endl;
+    cliente2.print();
+    
+    std::cout << "\nInformación del Cliente 3 (copiado):" << std::endl;
+    cliente3.print();
+    
+    // Liberar memoria
+    delete[] nombre;
+    delete[] direccion;
+    delete[] telefono;
+    
+    return 0;
+}

@@ -1,0 +1,70 @@
+#include <iostream>
+#include "Cliente.hpp"
+
+int main() {
+    // Constructor por defecto
+    Cliente cliente1;
+    
+    // Variables para entrada
+    int id;
+    char caracter;
+    
+    std::cout << "Ingrese el ID del cliente: ";
+    std::cin >> id;
+    std::cin.ignore();
+    
+    // Contamos primero el tamaño para cada entrada
+    int size_nombre = 0;
+    std::cout << "Ingrese el nombre del cliente: ";
+    while(std::cin.get() != '\n') size_nombre++;
+    
+    int size_direccion = 0;
+    std::cout << "Ingrese la dirección del cliente: ";
+    while(std::cin.get() != '\n') size_direccion++;
+    
+    int size_telefono = 0;
+    std::cout << "Ingrese el teléfono del cliente: ";
+    while(std::cin.get() != '\n') size_telefono++;
+    
+    // Creamos los arreglos del tamaño exacto necesario
+    char* nombre = new char[size_nombre + 1];
+    char* direccion = new char[size_direccion + 1];
+    char* telefono = new char[size_telefono + 1];
+    
+    // Leemos los datos
+    std::cout << "\nIngrese nuevamente los datos:\n";
+    std::cout << "Nombre: ";
+    std::cin.getline(nombre, size_nombre + 1);
+    
+    std::cout << "Dirección: ";
+    std::cin.getline(direccion, size_direccion + 1);
+    
+    std::cout << "Teléfono: ";
+    std::cin.getline(telefono, size_telefono + 1);
+    
+    // Constructor con parámetros
+    Cliente cliente2(id, nombre, direccion, telefono);
+    
+    // Constructor de copia
+    Cliente cliente3 = cliente2;
+    
+    // Operador de asignación
+    cliente1 = cliente2;
+    
+    // Mostrar información de los clientes
+    std::cout << "\nInformación del Cliente 1 (asignado):" << std::endl;
+    cliente1.print();
+    
+    std::cout << "\nInformación del Cliente 2 (original):" << std::endl;
+    cliente2.print();
+    
+    std::cout << "\nInformación del Cliente 3 (copiado):" << std::endl;
+    cliente3.print();
+    
+    // Liberar memoria
+    delete[] nombre;
+    delete[] direccion;
+    delete[] telefono;
+    
+    return 0;
+}
